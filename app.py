@@ -42,19 +42,24 @@ glosses = load_glosses()
 	
 model = load_model()
 vocab = model.wv.index_to_key
+
+st.write("Based on a Word2Vec model of the Diorisis corpus:")
+st.write("Vatri, Alessandro (2020): The Diorisis Ancient Greek Corpus (JSON). figshare. Dataset. https://doi.org/10.6084/m9.figshare.12251468.v6")
+st.write("Vatri, A., and B. McGillivray. \"The Diorisis Ancient Greek Corpus\", Research Data Journal for the Humanities and Social Sciences 3, 1 (2018): 55-65")
+st.write("Credit for the short definitions goes to Perseus and Logeion: https://github.com/helmadik/shortdefs")
 if "search_updated" not in st.session_state:
 	st.session_state["search_updated"] = False
 if "search_default" not in st.session_state:
 	st.session_state["search_default"] = "λέγω"
 
 if st.session_state.search_updated is True:
-	search = st.multiselect("Word?", vocab, default=st.session_state.search_default)#, index=random.randrange(0, len(vocab)))
+	search = st.multiselect("Choose your starting word:", vocab, default=st.session_state.search_default)#, index=random.randrange(0, len(vocab)))
 else:
-	search = st.multiselect("Word?", vocab, default="λέγω")#, index=random.randrange(0, len(vocab)))
+	search = st.multiselect("Choose your starting word:", vocab, default="λέγω")#, index=random.randrange(0, len(vocab)))
 
 
 if st.checkbox("Do you want to add a negative search term?"):
-	antisearch = st.multiselect("Negative word?", vocab)
+	antisearch = st.multiselect("Negative word(s):", vocab)
 else:
 	antisearch = None
 
