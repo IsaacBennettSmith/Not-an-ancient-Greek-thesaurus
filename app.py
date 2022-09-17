@@ -1,15 +1,11 @@
-from turtle import color
 import streamlit as st
 import pandas as pd
 from gensim.models import Word2Vec
 from greek_normalisation.normalise import Normaliser, Norm
 import random
-import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
 import math
-plt.set_cmap('hot')
-# cm = sns.light_palette("purple", as_cmap=True)
 
 @st.experimental_singleton
 def load_model():
